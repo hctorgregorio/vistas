@@ -78,16 +78,19 @@ class Vista extends JFrame implements ActionListener {
 		Integer aux;
 		if (s.equals("Crear Temporada")) {
 			// set the text of the label to the text of the field
-			aux = Integer.parseInt(t.getText()) * 2;
-			l.setText(Integer.toString(aux));
-
+			if (t.getText() == ""){
+				l.setText("Introduce algun dato");
+			} else {
+				aux = Integer.parseInt(t.getText()) * 2;
+				l.setText(Integer.toString(aux));
+			}
 			// set the text of field to blank
-			t.setText("  ");
+			t.setText("");
 		} else if (s.equals("Temporada Creada")) {
 			l.setText("Quiero ir a la temporada creada");
 
 			// set the text of field to blank
-			t.setText("  ");
+			t.setText("");
 		}
 	}
 }
