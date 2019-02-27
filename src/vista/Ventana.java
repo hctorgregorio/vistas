@@ -3,13 +3,16 @@ package vista;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Image;
 //Java program to create a blank text  
 //field of definite number of columns. 
 import java.awt.event.*;
 import javax.swing.*;
 
 public class Ventana extends JFrame implements ActionListener {
-
+	
+	public JPanel panel;
+	
 	 public Ventana() {
 		 this.setSize(600, 600); //Establece el tamaño de la ventana
 		 this.setMinimumSize(new Dimension(200, 200)); //Establece el tamaño minimo de la ventana
@@ -36,12 +39,21 @@ public class Ventana extends JFrame implements ActionListener {
 	}
 	
 	public void iniciarVentana () {
+		
+		colocarPaneles();
+		//colocarEtiquetas();
+		colocarBotones();
+	}
+
+	public void colocarPaneles(){
 		//Estructura del panel
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		panel.setBackground(Color.blue);// Añadir color al panel
-		
 		panel.setLayout(null); //Desactivar el diseño
-		
+		this.getContentPane().add(panel);//Agregar el panel a la ventana, this se refiere a la ventana creada
+	}
+	
+	public void colocarEtiquetas() {
 		//Estructura de la etiquetaTexto
 		JLabel etiquetaTexto = new JLabel(/*"LaLiga 2.0", SwingConstants.CENTER*/); //Centrar la etiqueta al texto
 		etiquetaTexto.setText("LaLiga 2.0");
@@ -67,9 +79,28 @@ public class Ventana extends JFrame implements ActionListener {
 		//Añadir componetes al panel
 		panel.add(etiquetaTexto);
 		panel.add(etiquetaImagen);
+	}
+	
+	private void colocarBotones() {
+		//boton 1 - boton de texto
+		JButton boton1 = new JButton();//Se puede añadir texto al boton dentro del parentesis JButton("texto")
+		boton1.setText("pulsame");//añadir texto al boton
+		boton1.setForeground(Color.ORANGE);
+		boton1.setFont(new Font("cooper", Font.BOLD, 15));
+		boton1.setEnabled(true);
+		boton1.setBounds(100, 100, 100, 40);//dimensiones en el boton y localizacion en el panel
+		boton1.setMnemonic('a'); //Establecemos alt + tecla
 		
-		this.getContentPane().add(panel);//Agregar el panel a la ventana, this se refiere a la ventana creada
+		//boton 2 - boton de imagen
+		JButton boton2 = new JButton();//Se puede añadir texto al boton dentro del parentesis JButton("texto")
+		boton2.setBounds(100, 200, 100, 40);//dimensiones en el boton y localizacion en el panel
+		ImageIcon clickAqui = new ImageIcon("ficheros/imagenes/boton.jpg");
+		boton2.setIcon(new ImageIcon(clickAqui.getImage().getScaledInstance(boton2.getWidth(), boton2.getHeight(), Image.SCALE_SMOOTH)));
+		boton2.setOpaque(true);
+		boton2.setBackground(Color.GREEN);
 		
+		panel.add(boton1);//añadir boton al panel
+		panel.add(boton2);//añadir boton al panel
 	}
 		/*// create a new frame to stor text field and button
 		f = new JFrame("LaLiga");
