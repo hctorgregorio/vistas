@@ -49,7 +49,8 @@ public class Ventana extends JFrame implements ActionListener {
 		//colocarEtiquetas();
 		//colocarBotones();
 		//colocarRadioBotones();
-		colocarCajasDeTexto();
+		//colocarCajasDeTexto();
+		colocarAreasDeTexto();
 	}
 
 	public void colocarPaneles(){
@@ -114,53 +115,7 @@ public class Ventana extends JFrame implements ActionListener {
 		panel.add(boton1);//añadir boton al panel
 		panel.add(boton2);//añadir boton al panel
 		panel.add(boton3);//añadir boton al panel
-		
-		/*// create a new frame to stor text field and button
-		f = new JFrame("LaLiga");
-		
 
-		// create a label to display text
-		l = new JLabel("nothing entered");
-		
-		// create a new button
-		b1 = new JButton("Crear Temporada");
-		b1.setBounds(270, 10, 140, 25);
-		// create a new button
-		b2 = new JButton("Temporada Creada");
-		b2.setBounds(270, 100, 140, 25);
-
-		// create a object of the vista class
-		Vista te = new Vista();
-
-		// addActionListener to button
-		b1.addActionListener(te);
-		b2.addActionListener(te);
-
-		// create a object of JTextField with 16 columns
-		t = new JTextField(16);
-		t.setBounds(100, 10, 160, 25);
-		// create a panel to add buttons and textfield
-		JPanel p = new JPanel();
-		p.setSize(600, 300);
-
-		// add buttons and textfield to panel
-		p.add(t);
-		p.add(b1);
-		p.add(b2);
-		p.add(l);
-
-		// add panel to frame
-		f.add(p);
-		f.setSize(600, 300);
-
-		// set the size of frame
-		
-		//f.setSize(300, 300);
-
-		f.show();
-	}
-
-	// if the vutton is pressed*/
 	}
 
 	private void colocarRadioBotones() {
@@ -189,7 +144,15 @@ public class Ventana extends JFrame implements ActionListener {
 		System.out.println("la caja dice: " + cajaTexto.getText());
 		panel.add(cajaTexto);
 	}
-	
+
+	private void colocarAreasDeTexto() {
+		
+		JTextArea areaTexto = new JTextArea("Escriba aqui su opinion...", 100, 200);
+		areaTexto.setBounds(20, 20, 300, 200);
+		areaTexto.append("\n mas texto"); //añade mas texto al area
+		panel.add(areaTexto);
+		
+	}
 	public void actionPerformed(ActionEvent e) {
 		String s = e.getActionCommand();
 		Integer aux;
