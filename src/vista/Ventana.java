@@ -7,6 +7,8 @@ import java.awt.Image;
 //Java program to create a blank text  
 //field of definite number of columns. 
 import java.awt.event.*;
+import java.io.File;
+
 import javax.swing.*;
 
 public class Ventana extends JFrame implements ActionListener {
@@ -14,7 +16,7 @@ public class Ventana extends JFrame implements ActionListener {
 	public JPanel panel;
 	
 	 public Ventana() {
-		 this.setSize(600, 600); //Establece el tamaño de la ventana
+		 this.setSize(800, 600); //Establece el tamaño de la ventana
 		 this.setMinimumSize(new Dimension(200, 200)); //Establece el tamaño minimo de la ventana
 		 /**
 		  * DO_NOTHING_ON_CLOSE  //Nothing happens
@@ -33,6 +35,9 @@ public class Ventana extends JFrame implements ActionListener {
 	// main class
 	public static void main(String[] args) {
 		
+		//File directorio = new File("C:/Users/Hector/git/vistas");
+		//recursivo(directorio, "");
+		
 		Ventana ventana = new Ventana();
 		
 		ventana.setVisible(true);
@@ -42,7 +47,9 @@ public class Ventana extends JFrame implements ActionListener {
 		
 		colocarPaneles();
 		//colocarEtiquetas();
-		colocarBotones();
+		//colocarBotones();
+		//colocarRadioBotones();
+		colocarCajasDeTexto();
 	}
 
 	public void colocarPaneles(){
@@ -88,20 +95,26 @@ public class Ventana extends JFrame implements ActionListener {
 		boton1.setForeground(Color.ORANGE);
 		boton1.setFont(new Font("cooper", Font.BOLD, 15));
 		boton1.setEnabled(true);
-		boton1.setBounds(100, 100, 100, 40);//dimensiones en el boton y localizacion en el panel
+		boton1.setBounds(100, 500, 100, 40);//dimensiones en el boton y localizacion en el panel
 		boton1.setMnemonic('a'); //Establecemos alt + tecla
 		
 		//boton 2 - boton de imagen
 		JButton boton2 = new JButton();//Se puede añadir texto al boton dentro del parentesis JButton("texto")
-		boton2.setBounds(100, 200, 100, 40);//dimensiones en el boton y localizacion en el panel
+		boton2.setBounds(250, 500, 100, 40);//dimensiones en el boton y localizacion en el panel
 		ImageIcon clickAqui = new ImageIcon("ficheros/imagenes/boton.jpg");
 		boton2.setIcon(new ImageIcon(clickAqui.getImage().getScaledInstance(boton2.getWidth(), boton2.getHeight(), Image.SCALE_SMOOTH)));
 		boton2.setOpaque(true);
 		boton2.setBackground(Color.GREEN);
 		
+		//boton 3 - boton de bordes
+		JButton boton3 = new JButton();
+		boton3.setBounds(400, 500, 100, 40);
+		boton3.setBorder(BorderFactory.createLineBorder(Color.GREEN, 4 ,false));
+		
 		panel.add(boton1);//añadir boton al panel
 		panel.add(boton2);//añadir boton al panel
-	}
+		panel.add(boton3);//añadir boton al panel
+		
 		/*// create a new frame to stor text field and button
 		f = new JFrame("LaLiga");
 		
@@ -148,6 +161,35 @@ public class Ventana extends JFrame implements ActionListener {
 	}
 
 	// if the vutton is pressed*/
+	}
+
+	private void colocarRadioBotones() {
+		JRadioButton radioBoton1 = new JRadioButton("opcion 1", true);
+		radioBoton1.setBounds(600, 150, 100, 40);
+		panel.add(radioBoton1);
+		
+		JRadioButton radioBoton2 = new JRadioButton("opcion 2", false);
+		radioBoton2.setBounds(600, 250, 100, 40);
+		panel.add(radioBoton2);
+		
+		JRadioButton radioBoton3 = new JRadioButton("opcion 3", false);
+		radioBoton3.setBounds(600, 350, 100, 40);
+		panel.add(radioBoton3);
+		
+		ButtonGroup grupoRadioBotones = new ButtonGroup();
+		grupoRadioBotones.add(radioBoton1);
+		grupoRadioBotones.add(radioBoton2);
+		grupoRadioBotones.add(radioBoton3);
+	}
+
+	private void colocarCajasDeTexto(){
+		JTextField cajaTexto = new JTextField();
+		cajaTexto.setBounds(100, 100, 200, 50);
+		cajaTexto.setText("Hola mundo");
+		System.out.println("la caja dice: " + cajaTexto.getText());
+		panel.add(cajaTexto);
+	}
+	
 	public void actionPerformed(ActionEvent e) {
 		String s = e.getActionCommand();
 		Integer aux;
@@ -167,5 +209,22 @@ public class Ventana extends JFrame implements ActionListener {
 			// set the text of field to blank
 			t.setText("");
 		}*/
+	}
+	
+	public static void recursivo(File directorio, String leftIndent) {
+	    if (directorio.isDirectory()) {
+	        System.out.println(leftIndent + directorio.getName());
+
+	        leftIndent += "     ";
+
+	        File subDirectorios[] = directorio.listFiles();
+	        for (File subDirectorio : subDirectorios) {
+	            recursivo(subDirectorio, leftIndent);
+	        }
+	    } else {
+
+	        System.out.println(leftIndent +"|   --> "+ directorio.getName());
+
+	    }
 	}
 }
